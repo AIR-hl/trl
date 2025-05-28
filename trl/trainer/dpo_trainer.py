@@ -1206,7 +1206,7 @@ class DPOTrainer(Trainer):
 
         output = {}
 
-        if self.use_weighting:
+        if self.use_weighting and not is_ref_model:
             with torch.no_grad():
                 # Eq (2) of the WPO paper: https://huggingface.co/papers/2406.11827
                 logprobs = F.log_softmax(logits, dim=-1)
